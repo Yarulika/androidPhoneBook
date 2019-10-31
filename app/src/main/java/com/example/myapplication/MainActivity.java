@@ -18,33 +18,11 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private EditText username;
-    private EditText password;
-    private TextView loginErr;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        findVIews();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
     }
 
-    private void findVIews(){
-        username = findViewById(R.id.etxt_username);
-        password = findViewById(R.id.etxt_password);
-        loginErr = findViewById(R.id.lblStatus);
-    }
-
-    public void onLoginClick(View view) {
-
-        System.out.println(username.getText().toString() + " " + password);
-        if (username.getText().toString().equals("Admin") && password.getText().toString().equals("123")){
-            Intent intent = new Intent(MainActivity.this,SecondActivity.class);
-            startActivity(intent);
-            finish();
-        }else {
-
-            loginErr.setText("Incorrect password");
-        }
-    }
 }
