@@ -16,7 +16,7 @@ public class RegisterActivity extends Activity {
     private EditText username;
     private EditText password;
     private EditText password2;
-    private Button loginButton;
+    private Button registerButton;
     private TextView errorText;
 
     @Override
@@ -30,7 +30,7 @@ public class RegisterActivity extends Activity {
         username = findViewById(R.id.etxt_username);
         password = findViewById(R.id.etxt_password);
         password2 = findViewById(R.id.etxt_password2);
-        loginButton = findViewById(R.id.loginButton);
+        registerButton = findViewById(R.id.loginButton);
         errorText = findViewById(R.id.txt_error);
     }
 
