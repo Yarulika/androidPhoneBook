@@ -6,13 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-public class SecondActivity extends AppCompatActivity {
+public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_menu);
 
     }
 
@@ -33,16 +34,22 @@ public class SecondActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.btn_logout_menu_item) {
             System.out.println("loooooog out");
-            Intent intent = new Intent(this,MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
+    public void onAddClick(View view) {
+        System.out.println("onAddClick pressed");
+    }
 
+    public void onDeleteClick(View view) {
+        System.out.println("onDeleteClick pressed");
+    }
 
-
-    //btn_logout_menu_item
+    public void onUpdateClick(View view) {
+        System.out.println("onUpdateClick pressed");
+    }
 }
