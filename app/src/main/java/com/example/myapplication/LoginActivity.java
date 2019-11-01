@@ -35,7 +35,7 @@ public class LoginActivity extends Activity {
 
     public void onLoginClick(View view) {
         if (isValidUser()) {
-            Intent intent = new Intent(LoginActivity.this, SecondActivity.class);
+            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);
         } else {
 
