@@ -1,20 +1,19 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class MenuActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu);
-
+        setContentView(R.layout.menu);
     }
 
     @Override
@@ -43,6 +42,8 @@ public class MenuActivity extends AppCompatActivity {
 
     public void onAddClick(View view) {
         System.out.println("onAddClick pressed");
+        Intent intent = new Intent(this, AddActivity.class);
+        startActivity(intent);
     }
 
     public void onDeleteClick(View view) {
