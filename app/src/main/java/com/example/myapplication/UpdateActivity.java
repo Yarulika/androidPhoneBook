@@ -1,12 +1,9 @@
 package com.example.myapplication;
 
 import android.app.Activity;
-import android.content.Context;
-import android.inputmethodservice.Keyboard;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.KeyboardShortcutGroup;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -46,7 +43,7 @@ public class UpdateActivity extends Activity {
         HideKeyBoard.hide(this);
 
         AppDatabase appDatabase = AppDatabase.getInstance(this);
-        PhoneUser phoneUser = appDatabase.phoneUserDAO().getPhoneUserByName(String.valueOf(contactName.getText()));
+        PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(String.valueOf(contactName.getText()), "");
 
         if (phoneUser == null) {
             toastMessage("No such contact");
@@ -66,6 +63,9 @@ public class UpdateActivity extends Activity {
         AppDatabase.getInstance(this).phoneUserDAO().updatePhoneUser(phoneUser);
 
         toastMessage("Contact updated!");
+
+        Intent intent = new Intent(this, MenuActivity.class);
+        startActivity(intent);
     }
 
     private void toastMessage(String message) {
