@@ -10,7 +10,7 @@ import java.util.List;
 @Dao
 public interface PhoneUserDAO {
 
-    @Query("SELECT * FROM phoneUsers WHERE name LIKE :name or number LIKE :number LIMIT 1;")
+    @Query("SELECT * FROM phoneUsers WHERE name = :name or number = :number LIMIT 1;")
     PhoneUser getUserByNameOrPhone(String name,String number);
 
     @Query("SELECT * FROM phoneUsers;")
