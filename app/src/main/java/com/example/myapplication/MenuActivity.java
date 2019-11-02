@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -50,6 +51,12 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onUpdateClick(View view) {
-        System.out.println("onUpdateClick pressed");
+        navigateTo(UpdateActivity.class);
+    }
+
+    private void navigateTo(Class<?> t){
+        System.out.println("Oh yeah");
+        Intent intent = new Intent(this, t);
+        startActivity(intent);
     }
 }
