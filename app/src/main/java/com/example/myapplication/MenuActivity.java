@@ -2,7 +2,9 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -34,8 +36,10 @@ public class MenuActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.btn_logout_menu_item) {
             System.out.println("loooooog out");
-            Intent intent = new Intent(this, MainActivity.class);
+            theUserIsLoggedOut();
+            Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
+            finish();
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -46,10 +50,20 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onDeleteClick(View view) {
-        System.out.println("onDeleteClick pressed");
+
+        Intent intent = new Intent(MenuActivity.this, DeleteContactActivity.class);
+        startActivity(intent);
     }
 
     public void onUpdateClick(View view) {
         System.out.println("onUpdateClick pressed");
+    }
+
+    void theUserIsLoggedOut() {
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        //user is logged in so save a variable to show that is logged in..
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putBoolean("LoggedIn",false);
+        editor.apply();
     }
 }
