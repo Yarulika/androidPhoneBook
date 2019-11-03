@@ -24,6 +24,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".DeleteContactActivity" />
+        <activity android:name=".AddActivity" />
+
     </application>
 
 </manifest>
