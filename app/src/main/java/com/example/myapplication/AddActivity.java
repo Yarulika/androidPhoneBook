@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.database.AppDatabase;
 import com.example.database.PhoneUser;
 
+import java.util.List;
+
 public class AddActivity extends AppCompatActivity {
     private EditText name;
     private EditText number;
@@ -23,32 +25,46 @@ public class AddActivity extends AppCompatActivity {
         findViews();
 
         add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast toast; //Maybe snackbar is more visible
-                if (name.getText().toString().trim().isEmpty() || number.getText().toString().trim().isEmpty()){
-                    toast = Toast.makeText(getApplicationContext(), "Fill in both name and number", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
-                else {
-                    AppDatabase appDatabase = AppDatabase.getInstance(AddActivity.this);
-                    PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(name.getText().toString(), number.getText().toString());
-                    if (phoneUser == null){
-                        appDatabase.phoneUserDAO().insertPhoneUser(new PhoneUser(name.getText().toString(), number.getText().toString()));
-                        toast = Toast.makeText(getApplicationContext(), "Contact was added!", Toast.LENGTH_LONG);
-                        toast.show();
-                    } else {
-                        toast = Toast.makeText(getApplicationContext(), "Name or phone number are already added!", Toast.LENGTH_LONG);
-                        toast.show();
-                    }
-                }
-            }
-        });
+                                   @Override
+                                   public void onClick(View v) {
+                                       onAddBtnClick(v);
+                                   }
+                               }
+        );
     }
 
     private void findViews() {
         name = findViewById(R.id.etxt_name_phone_user);
         number = findViewById(R.id.etxt_number_phone_user);
         add = findViewById(R.id.btn_add_phone_user);
+    }
+
+    public void onAddBtnClick(View v) {
+        Toast toast; //Maybe snackbar is more visible
+        if (name.getText().toString().trim().isEmpty() || number.getText().toString().trim().isEmpty()) {
+            toast = Toast.makeText(getApplicationContext(), R.string.err_msg_fill_in_name_number, Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            AppDatabase appDatabase = AppDatabase.getInstance(AddActivity.this);
+            PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(name.getText().toString(), number.getText().toString());
+            if (phoneUser == null) {
+                System.out.println("Adding new user");
+                appDatabase.phoneUserDAO().insertPhoneUser(new PhoneUser(name.getText().toString(), number.getText().toString()));
+                toast = Toast.makeText(getApplicationContext(), R.string.msg_contact_added, Toast.LENGTH_LONG);
+                toast.show();
+            } else {
+                System.out.println("User was found");
+                System.out.println("phoneUser" + phoneUser.toString());
+
+                toast = Toast.makeText(getApplicationContext(), R.string.err_msg_name_or_number_added, Toast.LENGTH_LONG);
+                toast.show();
+
+            }
+            //
+            List<PhoneUser> phoneUsers = appDatabase.phoneUserDAO().getAllPhoneUsers();
+            for (PhoneUser pu : phoneUsers) {
+                System.out.println("@@@@@@@ PhUser name:" + pu.name + " || Number: " + pu.number);
+            }
+        }
     }
 }
