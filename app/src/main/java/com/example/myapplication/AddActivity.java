@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,8 @@ public class AddActivity extends AppCompatActivity {
                 appDatabase.phoneUserDAO().insertPhoneUser(new PhoneUser(name.getText().toString(), number.getText().toString()));
                 toast = Toast.makeText(getApplicationContext(), R.string.msg_contact_added, Toast.LENGTH_LONG);
                 toast.show();
+                Intent intent = new Intent(this, MenuActivity.class);
+                startActivity(intent);
             } else {
                 toast = Toast.makeText(getApplicationContext(), R.string.err_msg_name_or_number_added, Toast.LENGTH_LONG);
                 toast.show();
