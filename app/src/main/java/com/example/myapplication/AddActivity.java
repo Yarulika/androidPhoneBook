@@ -11,8 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.database.AppDatabase;
 import com.example.database.PhoneUser;
 
-import java.util.List;
-
 public class AddActivity extends AppCompatActivity {
     private EditText name;
     private EditText number;
@@ -48,22 +46,12 @@ public class AddActivity extends AppCompatActivity {
             AppDatabase appDatabase = AppDatabase.getInstance(AddActivity.this);
             PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(name.getText().toString(), number.getText().toString());
             if (phoneUser == null) {
-                System.out.println("Adding new user");
                 appDatabase.phoneUserDAO().insertPhoneUser(new PhoneUser(name.getText().toString(), number.getText().toString()));
                 toast = Toast.makeText(getApplicationContext(), R.string.msg_contact_added, Toast.LENGTH_LONG);
                 toast.show();
             } else {
-                System.out.println("User was found");
-                System.out.println("phoneUser" + phoneUser.toString());
-
                 toast = Toast.makeText(getApplicationContext(), R.string.err_msg_name_or_number_added, Toast.LENGTH_LONG);
                 toast.show();
-
-            }
-            //
-            List<PhoneUser> phoneUsers = appDatabase.phoneUserDAO().getAllPhoneUsers();
-            for (PhoneUser pu : phoneUsers) {
-                System.out.println("@@@@@@@ PhUser name:" + pu.name + " || Number: " + pu.number);
             }
         }
     }
