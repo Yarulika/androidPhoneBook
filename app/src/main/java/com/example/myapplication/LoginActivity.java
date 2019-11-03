@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.Utils.HideKeyBoard;
 import com.example.database.AppDatabase;
 import com.example.database.User;
 
@@ -36,6 +37,8 @@ public class LoginActivity extends Activity {
     }
 
     public void onLoginClick(View view) {
+        HideKeyBoard.hide(this);
+
         if (isValidUser()) {
             Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
             startActivity(intent);

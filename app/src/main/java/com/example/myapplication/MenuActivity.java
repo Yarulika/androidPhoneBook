@@ -10,8 +10,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 public class MenuActivity extends AppCompatActivity {
 
     @Override
@@ -58,7 +56,12 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onUpdateClick(View view) {
-        System.out.println("onUpdateClick pressed");
+        navigateTo(UpdateActivity.class);
+    }
+
+    private void navigateTo(Class<?> t){
+        Intent intent = new Intent(this, t);
+        startActivity(intent);
     }
 
     void theUserIsLoggedOut() {

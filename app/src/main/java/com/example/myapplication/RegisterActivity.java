@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.Utils.HideKeyBoard;
 import com.example.database.AppDatabase;
 import com.example.database.User;
 
@@ -17,7 +18,6 @@ public class RegisterActivity extends Activity {
     private EditText password;
     private EditText password2;
     private Button registerButton;
-    private TextView errorText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,6 @@ public class RegisterActivity extends Activity {
         password = findViewById(R.id.etxt_password);
         password2 = findViewById(R.id.etxt_password2);
         registerButton = findViewById(R.id.loginButton);
-        errorText = findViewById(R.id.txt_error);
     }
 
     public void onRegisterClick(View view) {
@@ -42,25 +41,32 @@ public class RegisterActivity extends Activity {
         AppDatabase appDatabase = AppDatabase.getInstance(this);
         User user = appDatabase.userDAO().findUserByName(username);
 
-        if(user == null){
-            if(password.equals(password2)){
-                appDatabase.userDAO().insertUser(new User(username,password));
+        HideKeyBoard.hide(this);
 
-                Toast.makeText(this, "Successfully registered!", Toast.LENGTH_LONG).show();
+        if (user == null) {
+            if (password.equals(password2)) {
+                appDatabase.userDAO().insertUser(new User(username, password));
+
+                toastMessage("Successfully registered!");
 
                 goToLoginPage();
-
-            } else{
-                errorText.setText("Passwords mismatched!");
+            } else {
+                toastMessage("Passwords mismatched!");
             }
-        }else {
-            errorText.setText("Username already taken!");
+        } else {
+            toastMessage("Username already taken!");
         }
 
     }
 
     public void goToLoginPage() {
+        HideKeyBoard.hide(this);
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
+    }
+
+
+    private void toastMessage(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
     }
 }
