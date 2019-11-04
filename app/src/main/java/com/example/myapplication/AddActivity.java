@@ -22,33 +22,14 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_phone_user);
         findViews();
-    }
-
-
-    public void onAddUser(View view){
-        Toast toast; //Maybe snackbar is more visible
-        if (name.getText().toString().trim().isEmpty() || number.getText().toString().trim().isEmpty()){
-            toast = Toast.makeText(getApplicationContext(), "Fill in both name and number", Toast.LENGTH_SHORT);
-            toast.show();
-
-        }
-        else {
-            AppDatabase appDatabase = AppDatabase.getInstance(AddActivity.this);
-            PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(name.getText().toString(), number.getText().toString());
-
-            if (phoneUser == null){
-                appDatabase.phoneUserDAO().insertPhoneUser(new PhoneUser(name.getText().toString(), number.getText().toString()));
-
-                toast = Toast.makeText(getApplicationContext(), "Contact was added!", Toast.LENGTH_LONG);
-                toast.show();
-
-                Intent intent = new Intent(this, MenuActivity.class);
-                startActivity(intent);
-            } else {
-                toast = Toast.makeText(getApplicationContext(), "Name or phone number are already added!", Toast.LENGTH_LONG);
-                toast.show();
-            }
-        }
+    
+        add.setOnClickListener(new View.OnClickListener() {
+                                   @Override
+                                   public void onClick(View v) {
+                                       onAddBtnClick(v);
+                                   }
+                               }
+        );
     }
 
 
@@ -57,5 +38,26 @@ public class AddActivity extends AppCompatActivity {
         name = findViewById(R.id.etxt_name_phone_user);
         number = findViewById(R.id.etxt_number_phone_user);
         add = findViewById(R.id.btn_add_phone_user);
+    }
+
+    public void onAddBtnClick(View v) {
+        Toast toast; //Maybe snackbar is more visible
+        if (name.getText().toString().trim().isEmpty() || number.getText().toString().trim().isEmpty()) {
+            toast = Toast.makeText(getApplicationContext(), R.string.err_msg_fill_in_name_number, Toast.LENGTH_SHORT);
+            toast.show();
+        } else {
+            AppDatabase appDatabase = AppDatabase.getInstance(AddActivity.this);
+            PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(name.getText().toString(), number.getText().toString());
+            if (phoneUser == null) {
+                appDatabase.phoneUserDAO().insertPhoneUser(new PhoneUser(name.getText().toString(), number.getText().toString()));
+                toast = Toast.makeText(getApplicationContext(), R.string.msg_contact_added, Toast.LENGTH_LONG);
+                toast.show();
+                Intent intent = new Intent(this, MenuActivity.class);
+                startActivity(intent);
+            } else {
+                toast = Toast.makeText(getApplicationContext(), R.string.err_msg_name_or_number_added, Toast.LENGTH_LONG);
+                toast.show();
+            }
+        }
     }
 }

@@ -14,8 +14,6 @@ import com.example.Utils.HideKeyBoard;
 import com.example.database.AppDatabase;
 import com.example.database.User;
 
-import java.util.List;
-
 public class LoginActivity extends Activity {
     private EditText username;
     private EditText password;
@@ -39,14 +37,17 @@ public class LoginActivity extends Activity {
     public void onLoginClick(View view) {
         HideKeyBoard.hide(this);
 
-        if (isValidUser()) {
-            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-            startActivity(intent);
-            finish();//dont show on back press
-            saveLoggedInUser(true,this);//the user is logged in so we are saving the state..
+        if (isNotEmpty(username) && isNotEmpty(password)) {
+            if (isValidUser()) {
+                Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
+                startActivity(intent);
+                finish();//dont show on back press
+                saveLoggedInUser(true, this);//the user is logged in so we are saving the state..
+            } else {
+                errorText.setText("Invalid credentials!");
+            }
         } else {
-
-            errorText.setText("Invalid credentials!");
+            errorText.setText("The fields cannot be empty!");
         }
     }
 
@@ -59,11 +60,6 @@ public class LoginActivity extends Activity {
     private boolean isValidUser() {
         AppDatabase appDatabase = AppDatabase.getInstance(this);
         User user = appDatabase.userDAO().findUserByName(String.valueOf(this.username.getText()));
-        List<User> users = appDatabase.userDAO().getAllUsers();
-
-        for (User us : users) {
-            System.out.println("User : " + us.name + " , Password : " + us.password);
-        }
 
         boolean result = false;
 
@@ -74,11 +70,16 @@ public class LoginActivity extends Activity {
         return result;
     }
 
-    public void saveLoggedInUser(boolean value,Context context){
+
+    private boolean isNotEmpty(TextView textView) {
+        return !String.valueOf(textView.getText()).trim().isEmpty();
+    }
+
+    public void saveLoggedInUser(boolean value, Context context) {
         SharedPreferences sharedPref = context.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         //user is logged in so save a variable to show that is logged in..
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putBoolean("LoggedIn",value);
+        editor.putBoolean("LoggedIn", value);
         editor.apply();
     }
 }
