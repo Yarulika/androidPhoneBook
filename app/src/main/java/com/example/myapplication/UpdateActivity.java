@@ -27,7 +27,7 @@ public class UpdateActivity extends Activity {
     private void findViews() {
         contactName = findViewById(R.id.etxt_contact_name);
         number = findViewById(R.id.etxt_contact_number);
-        findButton = findViewById(R.id.loginButton);
+        findButton = findViewById(R.id.updateButton);
     }
 
     public void onFindClick(View view) {
