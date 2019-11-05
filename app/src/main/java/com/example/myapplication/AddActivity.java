@@ -7,12 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.database.AppDatabase;
 import com.example.database.PhoneUser;
 
-public class AddActivity extends AppCompatActivity {
+public class AddActivity extends MenuActivity{ //AppCompatActivity {
     private EditText name;
     private EditText number;
     private Button add;
@@ -31,6 +29,13 @@ public class AddActivity extends AppCompatActivity {
                                }
         );
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        // Inflate the menu; this adds items to the action bar if it is present.
+//        getMenuInflater().inflate(R.menu.menu_item, menu);
+//        return true;
+//    }
 
     private void findViews() {
         name = findViewById(R.id.etxt_name_phone_user);
