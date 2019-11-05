@@ -17,6 +17,8 @@ public class UpdateActivity extends Activity {
     private EditText number;
     private Button findButton;
 
+    private PhoneUser retrivedPhoneUser;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +45,13 @@ public class UpdateActivity extends Activity {
         HideKeyBoard.hide(this);
 
         AppDatabase appDatabase = AppDatabase.getInstance(this);
-        PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(String.valueOf(contactName.getText()), "");
+        retrivedPhoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(String.valueOf(contactName.getText()), "");
 
-        if (phoneUser == null) {
+        if (retrivedPhoneUser == null) {
             toastMessage("No such contact");
         } else {
             contactName.setEnabled(false);
-            number.setText(phoneUser.number);
+            number.setText(retrivedPhoneUser.number);
             number.setVisibility(View.VISIBLE);
             findButton.setText(R.string.update);
         }
@@ -60,6 +62,7 @@ public class UpdateActivity extends Activity {
         HideKeyBoard.hide(this);
 
         PhoneUser phoneUser = new PhoneUser(String.valueOf(contactName.getText()), String.valueOf(number.getText()));
+        phoneUser.id = retrivedPhoneUser.id;
         AppDatabase.getInstance(this).phoneUserDAO().updatePhoneUser(phoneUser);
 
         toastMessage("Contact updated!");
