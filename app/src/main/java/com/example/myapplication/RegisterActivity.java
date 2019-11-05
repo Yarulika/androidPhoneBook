@@ -27,10 +27,10 @@ public class RegisterActivity extends Activity {
     }
 
     private void findViews() {
-        username = findViewById(R.id.etxt_username);
-        password = findViewById(R.id.etxt_password);
-        password2 = findViewById(R.id.etxt_password2);
-        registerButton = findViewById(R.id.loginButton);
+        username = findViewById(R.id.etxt_username_register);
+        password = findViewById(R.id.etxt_password_register);
+        password2 = findViewById(R.id.etxt_password2_register);
+        registerButton = findViewById(R.id.registerButton);
     }
 
     public void onRegisterClick(View view) {
@@ -64,7 +64,6 @@ public class RegisterActivity extends Activity {
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);
     }
-
 
     private void toastMessage(String message) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show();

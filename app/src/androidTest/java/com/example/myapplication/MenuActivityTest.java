@@ -1,7 +1,6 @@
 package com.example.myapplication;
 
 
-
 import androidx.test.espresso.Espresso;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
@@ -24,15 +23,20 @@ public class MenuActivityTest {
     public ActivityTestRule<MenuActivity> mActivityRule = new ActivityTestRule<>(MenuActivity.class);
 
     @Test
-    public void buttonsAreClickable(){
+    public void isAddButtonClickable() {
         Espresso.onView(withId(R.id.btn_add))
                 .check(matches(isClickable()));
+    }
 
-        Espresso.onView(withId(R.id.btn_update))
-                .check(matches(isClickable()));
-
+    @Test
+    public void isDeleteButtonClickable() {
         Espresso.onView(withId(R.id.btn_delete))
                 .check(matches(isClickable()));
     }
 
+    @Test
+    public void isUpdateButtonClickable() {
+        Espresso.onView(withId(R.id.btn_update))
+                .check(matches(isClickable()));
+    }
 }
