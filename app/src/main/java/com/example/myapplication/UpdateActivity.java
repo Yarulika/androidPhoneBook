@@ -59,7 +59,10 @@ public class UpdateActivity extends Activity {
 
         HideKeyBoard.hide(this);
 
+        System.out.println(number.getText());
+
         PhoneUser phoneUser = new PhoneUser(String.valueOf(contactName.getText()), String.valueOf(number.getText()));
+
         AppDatabase.getInstance(this).phoneUserDAO().updatePhoneUser(phoneUser);
 
         toastMessage("Contact updated!");

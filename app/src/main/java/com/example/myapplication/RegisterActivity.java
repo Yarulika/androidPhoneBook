@@ -34,6 +34,9 @@ public class RegisterActivity extends Activity {
     }
 
     public void onRegisterClick(View view) {
+
+        HideKeyBoard.hide(this);
+
         String username = String.valueOf(this.username.getText());
         String password = String.valueOf(this.password.getText());
         String password2 = String.valueOf(this.password2.getText());
@@ -41,20 +44,22 @@ public class RegisterActivity extends Activity {
         AppDatabase appDatabase = AppDatabase.getInstance(this);
         User user = appDatabase.userDAO().findUserByName(username);
 
-        HideKeyBoard.hide(this);
+        if (!username.trim().isEmpty() && !password.trim().isEmpty() && !password.trim().isEmpty()) {
+            if (user == null) {
+                if (password.equals(password2)) {
+                    appDatabase.userDAO().insertUser(new User(username, password));
 
-        if (user == null) {
-            if (password.equals(password2)) {
-                appDatabase.userDAO().insertUser(new User(username, password));
+                    toastMessage("Successfully registered!");
 
-                toastMessage("Successfully registered!");
-
-                goToLoginPage();
+                    goToLoginPage();
+                } else {
+                    toastMessage("Passwords mismatched!");
+                }
             } else {
-                toastMessage("Passwords mismatched!");
+                toastMessage("Username already taken!");
             }
         } else {
-            toastMessage("Username already taken!");
+            toastMessage("The fields cannot be empty!");
         }
 
     }

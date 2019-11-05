@@ -8,7 +8,16 @@
     <string name="find">Find</string>
     <string name="contactName">Contact name</string>
     <string name="preference_file_key">sharedPreferenceKey</string>
+<<<<<<< HEAD
     <string name="addContact">Add Contact</string>
     <string name="enter_name">Enter name</string>
     <string name="enter_phone">Enter phone</string>
+=======
+    <string name="err_msg_fill_in_name_number">Fill in both name and number</string>
+    <string name="msg_contact_added">Contact was added!</string>
+    <string name="err_msg_name_or_number_added">Name or phone number are already added!</string>
+    <string name="title_add_contact">ADD CONTACT</string>
+    <string name="msg_enter_name">Enter name</string>
+    <string name="msg_enter_phone_number">Enter phone number</string>
+>>>>>>> ecb34ed8bf0e4e50d0381f8ee2da5a0b1ec6b16c
 </resources>
