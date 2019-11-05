@@ -1,7 +1,5 @@
 package com.example.myapplication;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,6 +7,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MenuActivity extends AppCompatActivity {
 
@@ -51,7 +51,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void onDeleteClick(View view) {
-        Intent intent = new Intent(MenuActivity.this, DeleteContactActivity.class);
+        Intent intent = new Intent(this, DeleteContactActivity.class);
         startActivity(intent);
     }
 
