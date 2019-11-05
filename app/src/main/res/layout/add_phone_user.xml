@@ -13,11 +13,7 @@
         android:id="@+id/textViewAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-<<<<<<< HEAD
-        android:text="@string/addContact"
-=======
         android:text="@string/title_add_contact"
->>>>>>> ecb34ed8bf0e4e50d0381f8ee2da5a0b1ec6b16c
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
@@ -33,11 +29,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPersonName"
-<<<<<<< HEAD
-        android:hint="@string/enter_name"
-=======
         android:hint="@string/msg_enter_name"
->>>>>>> ecb34ed8bf0e4e50d0381f8ee2da5a0b1ec6b16c
         tools:text="name" />
 
     <EditText
@@ -45,11 +37,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-<<<<<<< HEAD
-        android:hint="@string/enter_phone"
-=======
         android:hint="@string/msg_enter_phone_number"
->>>>>>> ecb34ed8bf0e4e50d0381f8ee2da5a0b1ec6b16c
         android:inputType="phone"
         tools:text="phone number" />
 
