@@ -12,7 +12,6 @@ import com.example.database.AppDatabase;
 import com.example.database.PhoneUser;
 
 public class DeleteContactActivity extends MenuActivity {
-
     private EditText userToDelete;
 
     @Override
@@ -26,10 +25,9 @@ public class DeleteContactActivity extends MenuActivity {
         PhoneUser phoneUser =getUser();
         String toastText;
 
-        if (phoneUser != null){//if the user exist delete it...
+        if (phoneUser != null) {//if the user exist delete it...
             appDatabase.phoneUserDAO().deletePhoneUser(phoneUser);
             toastText = "The user is deleted";
-
             //Redirect to the menu activity
             Intent intent = new Intent(DeleteContactActivity.this, MenuActivity.class);
             startActivity(intent);
