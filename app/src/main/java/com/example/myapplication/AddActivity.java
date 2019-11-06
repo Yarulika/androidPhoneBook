@@ -7,12 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.database.AppDatabase;
 import com.example.database.PhoneUser;
 
-public class AddActivity extends AppCompatActivity {
+public class AddActivity extends MenuActivity {
     private EditText name;
     private EditText number;
     private Button add;

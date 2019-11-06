@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,7 @@ import com.example.Utils.HideKeyBoard;
 import com.example.database.AppDatabase;
 import com.example.database.PhoneUser;
 
-public class UpdateActivity extends Activity {
+public class UpdateActivity extends MenuActivity {
     private EditText contactName;
     private EditText number;
     private Button findButton;
