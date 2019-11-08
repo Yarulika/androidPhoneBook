@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.Utils.HideKeyBoard;
 import com.example.database.AppDatabase;
 import com.example.database.PhoneUser;
 
@@ -24,16 +25,9 @@ public class AddActivity extends MenuActivity {
         setContentView(R.layout.add_phone_user);
         findViews();
 
-        add.setOnClickListener(new View.OnClickListener() {
-                                   @Override
-                                   public void onClick(View v) {
-                                       onAddBtnClick(v);
-                                   }
-                               }
-        );
-
-//        EditText editText = findViewById(R.id.etxt_number_phone_user);
+        // EditText editText = findViewById(R.id.etxt_number_phone_user);
         MyKeyboardDigit keyboard = findViewById(R.id.keyboard);
+        keyboard.setVisibility(View.GONE);
 
         // prevent system keyboard_digit from appearing when EditText is tapped
         number.setRawInputType(InputType.TYPE_CLASS_TEXT);
@@ -42,35 +36,16 @@ public class AddActivity extends MenuActivity {
         // pass the InputConnection from the EditText (number) to the keyboard_digit
         InputConnection ic = number.onCreateInputConnection(new EditorInfo());
         keyboard.setInputConnection(ic);
-    }
 
-//    public void onAddUser(View view) {
-//        Toast toast; //Maybe snackbar is more visible
-//        if (name.getText().toString().trim().isEmpty() || number.getText().toString().trim().isEmpty()) {
-//            toast = Toast.makeText(getApplicationContext(), "Fill in both name and number", Toast.LENGTH_SHORT);
-//            toast.show();
-//
-//        } else {
-//            AppDatabase appDatabase = AppDatabase.getInstance(AddActivity.this);
-//            PhoneUser phoneUser = appDatabase.phoneUserDAO().getUserByNameOrPhone(name.getText().toString(), number.getText().toString());
-//
-//            if (phoneUser == null) {
-//                appDatabase.phoneUserDAO().insertPhoneUser(new PhoneUser(name.getText().toString(), number.getText().toString()));
-//
-//                toast = Toast.makeText(getApplicationContext(), "Contact was added!", Toast.LENGTH_LONG);
-//                toast.show();
-//
-//
-//                add.setOnClickListener(new View.OnClickListener() {
-//                                           @Override
-//                                           public void onClick(View v) {
-//                                               onAddBtnClick(v);
-//                                           }
-//                                       }
-//                );
-//            }
-//        }
-//    }
+        number.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MyKeyboardDigit keyboard = findViewById(R.id.keyboard);
+                keyboard.setVisibility(View.VISIBLE);
+            }
+        });
+
+    }
 
     private void findViews() {
         name = findViewById(R.id.etxt_name_phone_user);
@@ -78,7 +53,8 @@ public class AddActivity extends MenuActivity {
         add = findViewById(R.id.btn_add_phone_user);
     }
 
-    public void onAddBtnClick(View v) {
+    public void onAddContactClick(View view) {
+        HideKeyBoard.hide(this);
         Toast toast; //Maybe snackbar is more visible
         if (name.getText().toString().trim().isEmpty() || number.getText().toString().trim().isEmpty()) {
             toast = Toast.makeText(getApplicationContext(), R.string.err_msg_fill_in_name_number, Toast.LENGTH_SHORT);
