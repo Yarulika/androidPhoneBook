@@ -18,6 +18,7 @@
         <activity android:name=".AddActivity" />
         <activity android:name=".DeleteContactActivity" />
         <activity android:name=".UpdateActivity" />
+        <activity android:name=".MyKeyboardDigit" />
         <activity android:name=".SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -53,4 +53,11 @@
         tools:layout_editor_absoluteX="156dp"
         tools:layout_editor_absoluteY="138dp" />
 
+    <com.example.myapplication.MyKeyboardDigit
+        android:id="@+id/keyboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"/>
+
 </LinearLayout>

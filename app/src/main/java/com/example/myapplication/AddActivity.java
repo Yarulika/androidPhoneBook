@@ -2,7 +2,10 @@ package com.example.myapplication;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -20,8 +23,18 @@ public class AddActivity extends MenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_phone_user);
         findViews();
-    }
 
+//        EditText editText = findViewById(R.id.etxt_number_phone_user);
+        MyKeyboardDigit keyboard = findViewById(R.id.keyboard);
+
+        // prevent system keyboard from appearing when EditText is tapped
+        number.setRawInputType(InputType.TYPE_CLASS_TEXT);
+        number.setTextIsSelectable(true);
+
+        // pass the InputConnection from the EditText (number) to the keyboard
+        InputConnection ic = number.onCreateInputConnection(new EditorInfo());
+        keyboard.setInputConnection(ic);
+    }
 
     public void onAddUser(View view) {
         Toast toast; //Maybe snackbar is more visible
@@ -50,7 +63,6 @@ public class AddActivity extends MenuActivity {
             }
         }
     }
-
 
     private void findViews() {
         name = findViewById(R.id.etxt_name_phone_user);
