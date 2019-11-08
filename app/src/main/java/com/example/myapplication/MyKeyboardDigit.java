@@ -26,7 +26,7 @@ public class MyKeyboardDigit extends LinearLayout implements View.OnClickListene
         init(context, attrs);
     }
 
-    // keyboard keys (buttons)
+    // keyboard_digit keys (buttons)
     private Button mButton1;
     private Button mButton2;
     private Button mButton3;
@@ -50,7 +50,7 @@ public class MyKeyboardDigit extends LinearLayout implements View.OnClickListene
     private void init(Context context, AttributeSet attrs) {
 
         // initialize buttons
-        LayoutInflater.from(context).inflate(R.layout.keyboard, this, true);
+        LayoutInflater.from(context).inflate(R.layout.keyboard_digit, this, true);
         mButton1 = (Button) findViewById(R.id.button_1);
         mButton2 = (Button) findViewById(R.id.button_2);
         mButton3 = (Button) findViewById(R.id.button_3);

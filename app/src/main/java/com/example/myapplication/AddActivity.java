@@ -27,11 +27,11 @@ public class AddActivity extends MenuActivity {
 //        EditText editText = findViewById(R.id.etxt_number_phone_user);
         MyKeyboardDigit keyboard = findViewById(R.id.keyboard);
 
-        // prevent system keyboard from appearing when EditText is tapped
+        // prevent system keyboard_digit from appearing when EditText is tapped
         number.setRawInputType(InputType.TYPE_CLASS_TEXT);
         number.setTextIsSelectable(true);
 
-        // pass the InputConnection from the EditText (number) to the keyboard
+        // pass the InputConnection from the EditText (number) to the keyboard_digit
         InputConnection ic = number.onCreateInputConnection(new EditorInfo());
         keyboard.setInputConnection(ic);
     }
