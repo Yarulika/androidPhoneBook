@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/android:api-25-alpha
+      - image: circleci/android:api-28
     environment:
       JVM_OPTS: -Xmx3200m
     steps:
@@ -17,5 +17,14 @@ jobs:
             - ~/.gradle
           key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
       - run:
-          name: Run Tests
-          command: ./gradlew lint test
+          name: Build
+          command: ./gradlew build
+      - run:
+          name: Linter
+          command: ./gradlew lint
+      - run:
+          name: Unit tests
+          command: ./gradlew test
+#      - run:
+#          name: Run UI Tests TODO
+#          command: ./gradlew :demo:connectedAndroidTest

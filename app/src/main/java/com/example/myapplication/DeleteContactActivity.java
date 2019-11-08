@@ -39,7 +39,7 @@ public class DeleteContactActivity extends MenuActivity {
     }
 
     private PhoneUser getUser(){
-        userToDelete = findViewById(R.id.userToDelete);//get the field and the name we wrote
+        userToDelete = findViewById(R.id.etxt_userToDelete);//get the field and the name we wrote
         String user = userToDelete.getText().toString();
         PhoneUser phoneUser = AppDatabase.getInstance(this).phoneUserDAO().getUserByNameOrPhone(user,user);//get the user
         return phoneUser;
